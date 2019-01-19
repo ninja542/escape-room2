@@ -75,8 +75,10 @@ var store = new Vuex.Store({
 			state.inventory.push(item);
 		},
 		removeitem(state, item){
-			let index = array.indexOf(item)
-			state.inventory.splice(index, 1)
+			if (state.isActive != "hand"){
+				let index = state.inventory.indexOf(state.isActive)
+				state.inventory.splice(index, 1)
+			}
 		},
 		setActive(state, item){
 			state.isActive = item;
@@ -141,7 +143,7 @@ Vue.component("object-examine", {
 
 Vue.component("object-use", {
 	props: {
-		info: {
+		useinfo: {
 			type: Object,
 			// default: () => ({})
 		},
@@ -149,11 +151,11 @@ Vue.component("object-use", {
 	data: function(){
 		return {
 			styleObject: {
-				position: "relative",
-				top: this.info.position[1] + "%",
-				left: this.info.position[0] + "%",
-				width: this.info.size[0] + "px",
-				height: this.info.size[1] + "px",
+				position: "absolute",
+				top: this.useinfo.position[1] + "%",
+				left: this.useinfo.position[0] + "%",
+				width: this.useinfo.size[0] + "px",
+				height: this.useinfo.size[1] + "px",
 				cursor: "pointer",
 				border: "solid 5px purple",
 			}
@@ -181,23 +183,24 @@ Vue.component("object-use", {
 		}
 	},
 	template: `
-		<div :id="info.name" v-on:click.once="use(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'use'" v-bind:style="styleObject">
+		<div :id="useinfo.name" v-on:click.once="use(useinfo.name)" v-show="useinfo.orientation == this.orientation && this.mode == 'use'" v-bind:style="styleObject">
 		</div>
 	`
 });
+
 let app = new Vue({
 	el: "#game",
 	data: {
 		ropehealth: 20,
 		spiderhealth: 2,
 		object_examine: [
-			// template: name, orientation, position [left percentage, top percentage], size [width, height], flag
-			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10]},
-			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10]},
-			{name: "key", orientation: 1, position: [40, 40], size: [20, 20]},
-			{name: "screwdriver", orientation: 3, position:[10, 10], size: [50, 50]},
-			{name: "lighter", orientation: 3, position: [40, 40], size: [50, 50]},
-			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10]},
+			// template: name, orientation, position [left percentage, top percentage], size [width, height], flag, uses
+			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10], uses: 4},
+			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10], uses: 1},
+			{name: "key", orientation: 1, position: [40, 40], size: [20, 20], uses: 1},
+			{name: "screwdriver", orientation: 3, position:[10, 10], size: [50, 50], uses: 1},
+			{name: "lighter", orientation: 3, position: [40, 40], size: [50, 50], uses: 1},
+			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10], uses: 1},
 		],
 		object_use: [
 			{name: "gibberish", orientation: 0, position: [30, 30], size: [10, 10]}, //use flashlight on safe
