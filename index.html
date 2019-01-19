@@ -1,0 +1,46 @@
+<html>
+	<header>
+		<link href="normalize.css" rel="stylesheet">
+		<link href="room1_v1.css" rel="stylesheet">
+	</header>
+	<body>
+		<div id="body">
+			<!-- <object id="svg-object" data="North Wall.svg" type="image/svg+xml"></object> -->
+			<div id="game">
+				<div id="orientation" v-bind:style="orientationStyle"></div>
+				<div id="inventory">
+					<div id="iconwrapper">
+						<img v-bind:src="iconSVG[item]" v-for="item in inventory" class="icons" v-bind:class="{active: isActive == item}" v-on:click="isActive = item">
+					</div>
+				</div>
+				<!-- <div id="screwdriver" v-on:click.once="pickup('screwdriver')" v-show="inventory.includes('screwdriver') == false && orientation == 3 && mode == 'examine'"></div> -->
+				<!-- <div id="lighter" v-on:click.once="examine('lighter')" v-show="inventory.includes('lighter') == false && orientation == 3 && mode == 'examine'"></div> -->
+				<!-- <div id="tape" v-on:click.once="examine('tape')" v-show="inventory.includes('tape') == false && orientation == 3 && mode == 'examine'"></div> -->
+				<!-- <div id="rug" v-on:click.once="examine('rug')" v-show="orientation == 2 && mode == 'examine'"></div> -->
+				<!-- <div id="mirror" v-show="orientation == 1 && mode == 'examine'|| mode == 'use'" v-on:click="examine('mirror')"></div> -->
+				<!-- <div id="door" v-show="orientation == 2 && mode == 'examine'" v-on:click="examine('og door')"></div> -->
+				<!-- <div id="door" v-show="orientation == 2 && mode == 'use'" v-on:click="use('og door')"></div> -->
+				<!-- <div id="lamp" v-show="orientation == 2 && mode == 'examine' || mode == 'use'" v-on:click="examine('light')"></div> -->
+
+				<!-- <div id="acquired"><p id="acquiredtext"></p></div> -->
+				<!-- <div id="dialogue"><p id="dialoguetext"></p></div> -->
+				<div id="buttons">
+					<div v-on:click="mode = 'examine'"> EXAMINE </div>
+					<div v-on:click="mode = 'combine'"> COMBINE </div>
+					<div v-on:click="mode = 'use'"> USE </div>
+				</div>
+			</div>
+			<!-- <div id="black"></div> -->
+			<!-- <div id="story"> -->
+				<!-- <p id="part1"><i>You awaken in a dark room.</i></p> -->
+				<!-- <p id="part2"><i>Only a faint, flickering light bulb illuminates the four walls that box you in.</i></p> -->
+				<!-- <p id="part3"><i>The sound of dripping water fills the air as rain pounds on the roof.</i></p> -->
+			<!-- </div> -->
+		<!-- </div> -->
+		<script src="https://vuejs.org/js/vue.js"></script>
+		<!-- <script src="vue.js"></script> -->
+		<!-- <script src="anime.min.js"></script> -->
+		<script src="room1_v1.js"></script>
+		<!-- <script src="story.js"></script> -->
+	</body>
+</html>
