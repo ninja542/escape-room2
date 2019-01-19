@@ -122,9 +122,6 @@ Vue.component("object-examine", {
 		check: function(){
 			return store.state.inventory.includes(this.info.name);
 		},
-		svg: function(){
-			return inventoryMap[this.info.name];
-		}
 	},
 	methods: {
 		pickup: function(item){
@@ -134,7 +131,6 @@ Vue.component("object-examine", {
 	},
 	template: `
 		<div :id="info.name" v-on:click.once="pickup(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'examine'" v-bind:style="styleObject">
-			<img v-bind:src="this.svg">
 		</div>
 	`
 });
