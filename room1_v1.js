@@ -57,6 +57,7 @@ let keyOriginalDoor = false // true if key is used on original door
 var store = new Vuex.Store({
 	state: {
 		inventory: ["hand"], // items in inventory
+		isActive: "hand",
 		orientation: 0, // 0 = north, 1 = east, 2 = south, 3 = west
 		mode: "", // examine, combine, use
 	},
@@ -76,6 +77,9 @@ var store = new Vuex.Store({
 		removeitem(state, item){
 			let index = array.indexOf(item)
 			state.inventory.splice(index, 1)
+		},
+		setActive(state, item){
+			state.isActive = item;
 		}
 	},
 	getters: {
@@ -117,6 +121,9 @@ Vue.component("object-examine", {
 		},
 		check: function(){
 			return store.state.inventory.includes(this.info.name);
+		},
+		svg: function(){
+			return inventoryMap[this.info.name];
 		}
 	},
 	methods: {
@@ -126,30 +133,76 @@ Vue.component("object-examine", {
 		}
 	},
 	template: `
-		<div :id="info.name" v-on:click.once="pickup(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'examine'" v-bind:style="styleObject"></div>
+		<div :id="info.name" v-on:click.once="pickup(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'examine'" v-bind:style="styleObject">
+			<img v-bind:src="this.svg">
+		</div>
 	`
 });
 
+Vue.component("object-use", {
+	props: {
+		info: {
+			type: Object,
+			// default: () => ({})
+		},
+	},
+	data: function(){
+		return {
+			styleObject: {
+				position: "absolute",
+				top: this.info.position[1] + "%",
+				left: this.info.position[0] + "%",
+				width: this.info.size[0] + "px",
+				height: this.info.size[1] + "px",
+				cursor: "pointer",
+				border: "solid 5px purple",
+			}
+		}
+	},
+	computed: {
+		inventory: function(){
+			return store.state.inventory;
+		},
+		orientation: function(){
+			return store.state.orientation;
+		},
+		mode: function(){
+			return store.state.mode;
+		},
+		check: function(){
+			return store.state.inventory.includes(this.info.name);
+		},
+	},
+	methods: {
+		use: function(item){
+			// store.commit("additem", item);
+			console.log("used " + item);
+		}
+	},
+	template: `
+		<div :id="info.name" v-on:click.once="pickup(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'examine'" v-bind:style="styleObject">
+		</div>
+	`
+});
 let app = new Vue({
 	el: "#game",
 	data: {
-		isActive: "hand",
 		ropehealth: 20,
 		spiderhealth: 2,
 		object_examine: [
 			// template: name, orientation, position [left percentage, top percentage], size [width, height]
 			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10]},
-			{name: "gibberish", orientation: 0, position: [30, 30], size: [10, 10]},
 			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10]},
-			{name: "key", orientation: 2, position: [40, 40], size: [20, 20]},
+			{name: "key", orientation: 1, position: [40, 40], size: [20, 20]},
 			{name: "screwdriver", orientation: 3, position:[10, 10], size: [100, 100]},
 			{name: "lighter", orientation: 3, position: [40, 40], size: [100, 100]},
 			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10]},
 		],
 		object_use: [
+			{name: "gibberish", orientation: 0, position: [30, 30], size: [10, 10]}, //use flashlight on safe
+			{name: "thinwire", orientation: 0, position: [40, 40], size: [10, 10]}, //use flashlight on window
 			{name: "paperinvis", orientation: 2, position: [40, 40], size: [10, 10]}, //use hand on rug
 			{name: "candle", orientation: 2, position: [40, 40], size: [10, 10]}, //use hand in cubby hole
-			{name: "thinwire", orientation: 0, position: [40, 40], size: [10, 10]}, //use flashlight on window
 			{name: "pliers", orientation: 2, position: [40, 40], size: [10, 10]}, //flashlight bottom cubby
 			{name: "sharpbone", orientation: 1, position: [40, 40], size: [10, 10]}, //use pliers on skeleton
 			],
@@ -171,19 +224,20 @@ let app = new Vue({
 		// end data
 		orientationStyle: function(){
 			if (this.orientation == 0){
-				document.getElementById("game").style.backgroundImage = "url(NorthWall.png)";
+				// document.getElementById("game").style.backgroundImage = "url(NorthWall.png)";
+				document.getElementById("game").style.backgroundImage = "url(North WallKey.png)";
 				return {borderTopColor: "#FF0000"};
 			}
 			else if (this.orientation == 1){
-				document.getElementById("game").style.backgroundImage = "url(EastWall.png)";
+				document.getElementById("game").style.backgroundImage = "url(EastWallAlcovePaper.png)";
 				return {borderRightColor: "FF0000"};
 			}
 			else if (this.orientation == 2){
-				document.getElementById("game").style.backgroundImage = "url(SouthWall.png)";
+				document.getElementById("game").style.backgroundImage = "url(SouthWallCubbyOpen.png)";
 				return {borderBottomColor: "FF0000"};
 			}
 			else if (this.orientation == 3){
-				document.getElementById("game").style.backgroundImage = "url(WestWall.png)";
+				document.getElementById("game").style.backgroundImage = "url(DeskDrawerOpen.png)";
 				return {borderLeftColor: "FF0000"};
 			}
 		},
@@ -238,6 +292,9 @@ let app = new Vue({
 		setmode: function(mode){
 			store.commit("setmode", mode);
 		},
+		setactive: function(item){
+			store.commit("setActive", item);
+		}
 		// fadeText: function(item){
 		// 	console.log("picked up" + item)
 		// },

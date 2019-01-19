@@ -17,7 +17,7 @@
 				<div id="orientation" v-bind:style="orientationStyle"></div>
 				<div id="inventory">
 					<div id="iconwrapper">
-						<img v-bind:src="iconSVG[item]" v-for="item in inventory" class="icons" v-bind:class="{active: isActive == item}" v-on:click="isActive = item">
+						<img v-bind:src="iconSVG[item]" v-for="item in inventory" class="icons" v-bind:class="{active: isActive == item}" v-on:click="setactive(item)">
 					</div>
 				</div>
 				<div id="buttons">
