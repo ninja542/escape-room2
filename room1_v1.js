@@ -192,12 +192,12 @@ let app = new Vue({
 		spiderhealth: 2,
 		object_examine: [
 			// template: name, orientation, position [left percentage, top percentage], size [width, height], flag
-			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10]},
-			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10]},
-			{name: "key", orientation: 1, position: [40, 40], size: [20, 20]},
+			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10], flag: safe1Correct},
+			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10], flag: mirrorBroken},
+			{name: "key", orientation: 1, position: [40, 40], size: [20, 20], flag: safe2Correct},
 			{name: "screwdriver", orientation: 3, position:[10, 10], size: [50, 50]},
-			{name: "lighter", orientation: 3, position: [40, 40], size: [50, 50]},
-			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10]},
+			{name: "lighter", orientation: 3, position: [40, 40], size: [50, 50], flag: drawerOpen},
+			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10], flag: drawerOpen},
 		],
 		object_use: [
 			{name: "gibberish", orientation: 0, position: [30, 30], size: [10, 10]}, //use flashlight on safe
