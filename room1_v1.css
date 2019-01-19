@@ -203,7 +203,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	opacity: 0;
+	opacity: 1;
 }
 #buttons div {
 	padding: 8px;
@@ -215,4 +215,9 @@ body {
 #buttons div:hover {
 	background-color: rgba(255, 255, 255, 0.5);
 	cursor: pointer;
+}
+#screwdriver {
+	width: 100px;
+	height: 100px;
+	background-color: red;
 }

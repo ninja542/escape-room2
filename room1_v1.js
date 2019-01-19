@@ -32,17 +32,73 @@ let flashlight = false; // true = having flashlight, false = not flashlight or f
 let flashlightOn = false; // true = flashlight turned on, false = flashlight turned off
 let flashlightUse = 4; // (0-4) uses
 
+var store = new Vuex.Store({
+	state: {
+		inventory: ["hand"], // items in inventory
+		orientation: 0, // 0 = north, 1 = east, 2 = south, 3 = west
+		mode: "", // examine, combine, use
+	},
+	mutations: {
+		changeorientation(state, amount){
+			state.orientation += amount;
+		},
+		setorientation(state, amount){
+			state.orientation = amount;
+		},
+		setmode(state, mode){
+			state.mode = mode;
+		}
+	},
+	getters: {
+
+	}
+});
+
+// info has: position, the name, orientation, condition_flags, mode
+Vue.component("object-examine", {
+	props: ["info"],
+	data: function(){
+		return {
+		}
+	},
+	computed: {
+		inventory: function(){
+			return store.state.inventory;
+		},
+		orientation: function(){
+			return store.state.orientation;
+		},
+		mode: function(){
+			return store.state.mode;
+		}
+	},
+	template: `
+		<div :id="this.info.name" v-on:click.once="pickup(this.info.name)" v-show="this.inventory.includes('this.info.name') == false && this.info.orientation == this.orientation && this.mode == 'examine'"></div>
+	`
+})
+
 let app = new Vue({
 	el: "#game",
 	data: {
-		orientation: 0, // 0 = north, 1 = east, 2 = south, 3 = west
-		inventory: ["hand"], // items in inventory
 		isActive: "hand",
-		mode: "", // examine, combine, use
 		ropehealth: 20,
-		spiderhealth: 2
+		spiderhealth: 2,
+		object_examine: [
+			{name: "screwdriver", orientation: 3, position:[10, 10]}
+		]
 	},
 	computed: {
+		// start data
+		inventory: function(){
+			return store.state.inventory;
+		},
+		orientation: function(){
+			return store.state.orientation;
+		},
+		mode: function(){
+			return store.state.mode;
+		},
+		// end data
 		orientationStyle: function(){
 			if (this.orientation == 0){
 				document.getElementById("game").style.backgroundImage = "url(NorthWall.png)";
@@ -90,19 +146,27 @@ let app = new Vue({
 		},
 		increaseOrientation: function(){
 			if (this.orientation != 3){
-				this.orientation += 1;
+				// this.orientation += 1;
+				store.commit("changeorientation", 1)
 			}
 			else {
-				this.orientation = 0;
+				// this.orientation = 0;
+				store.commit("setorientation", 0)
 			}
 		},
 		decreaseOrientation: function(){
 			if (this.orientation != 0){
-				this.orientation -= 1;
+				// this.orientation -= 1;
+				store.commit("changeorientation", -1)
 			}
 			else {
-				this.orientation = 3;
+				// this.orientation = 3;
+				store.commit("setorientation", 3)
+
 			}
+		},
+		setmode: function(mode){
+			store.commit("setmode", mode);
 		},
 		pickup: function(item){
 			this.inventory.push(item);
@@ -399,28 +463,6 @@ let app = new Vue({
 			else {
 				this.fadeText("I don't think these two items are compatible");
 			}
-		},
-		fadeText: function(message, time = 2000){
-			document.getElementById("dialoguetext").innerText = message;
-			anime({
-				targets: "#dialoguetext",
-				opacity: [
-					{value: 1, duration: time},
-					{value: 0, duration: time}
-				],
-				easing: "easeInOutQuart",
-			});
-		},
-		fadeText2: function(message, time = 3000){
-			document.getElementById("acquiredtext").innerText = message;
-			anime({
-				targets: "#acquiredtext",
-				opacity: [
-					{value: 1, duration: time},
-					{value: 0, duration: time}
-				],
-				easing: "easeInOutQuart",
-			});
 		}
 	},
 	mounted: function(){
