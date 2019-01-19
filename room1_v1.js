@@ -79,6 +79,7 @@ var store = new Vuex.Store({
 });
 
 // info has: position, the name, orientation, condition_flags, mode
+
 Vue.component("object-examine", {
 	props: {
 		info: {
@@ -232,9 +233,9 @@ let app = new Vue({
 		setmode: function(mode){
 			store.commit("setmode", mode);
 		},
-		fadeText: function(item){
-			console.log("picked up" + item)
-		},
+		// fadeText: function(item){
+		// 	console.log("picked up" + item)
+		// },
 	// 	pickup: function(item){
 	// 		this.inventory.push(item);
 	// 		if (item == "paperinvis"){

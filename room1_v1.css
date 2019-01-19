@@ -197,8 +197,8 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	opacity: 1;
-	z-index: 5;
+	/*opacity: 1;*/
+	/*z-index: 5;*/
 }
 #buttons div {
 	padding: 8px;

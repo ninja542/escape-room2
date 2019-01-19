@@ -20,6 +20,11 @@
 						<img v-bind:src="iconSVG[item]" v-for="item in inventory" class="icons" v-bind:class="{active: isActive == item}" v-on:click="isActive = item">
 					</div>
 				</div>
+				<div id="buttons">
+					<div v-on:click="setmode('examine')"> EXAMINE </div>
+					<div v-on:click="setmode('combine')"> COMBINE </div>
+					<div v-on:click="setmode('use')"> USE </div>
+				</div>
 				<object-examine v-for="(object) in object_examine" v-bind:info="object"	>
 				<!-- <div id="screwdriver" v-on:click.once="pickup('screwdriver')" v-show="inventory.includes('screwdriver') == false && orientation == 3 && mode == 'examine'"></div> -->
 				<!-- <div id="lighter" v-on:click.once="examine('lighter')" v-show="inventory.includes('lighter') == false && orientation == 3 && mode == 'examine'"></div> -->
@@ -32,12 +37,6 @@
 
 				<!-- <div id="acquired"><p id="acquiredtext"></p></div> -->
 				<!-- <div id="dialogue"><p id="dialoguetext"></p></div> -->
-				<div id="buttons">
-					<div v-on:click="setmode('examine')"> EXAMINE </div>
-					<div v-on:click="setmode('combine')"> COMBINE </div>
-					<div v-on:click="setmode('use')"> USE </div>
-				</div>
-			</div>
 			<!-- <div id="black"></div> -->
 			<!-- <div id="story"> -->
 				<!-- <p id="part1"><i>You awaken in a dark room.</i></p> -->
