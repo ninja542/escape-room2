@@ -32,15 +32,47 @@ let flashlight = false; // true = having flashlight, false = not flashlight or f
 let flashlightOn = false; // true = flashlight turned on, false = flashlight turned off
 let flashlightUse = 4; // (0-4) uses
 
+var store = new Vuex.Store({
+	state: {
+		inventory: ["hand"], // items in inventory
+	},
+	mutations: {
+
+	},
+	getters: {
+
+	}
+});
+
+// info has: position, the name, orientation, condition_flags, mode
+Vue.component("object-examine", {
+	props: ["info"],
+	data: function(){
+		return {
+		}
+	},
+	computed: {
+		inventory: function(){
+			return store.state.inventory;
+		},
+	},
+	template: `
+		<div id="this.info.name" v-on:click.once="pickup(this.info.name)" v-show="this.inventory.includes('this.info.name') == false && this.info.orientation == this.orientation && mode == this.info.name"></div>
+	`
+})
+
 let app = new Vue({
 	el: "#game",
 	data: {
 		orientation: 0, // 0 = north, 1 = east, 2 = south, 3 = west
-		inventory: ["hand"], // items in inventory
+		inventory: store.state.inventory,
 		isActive: "hand",
 		mode: "", // examine, combine, use
 		ropehealth: 20,
-		spiderhealth: 2
+		spiderhealth: 2,
+		object_examine: [
+			{name: "screwdriver", orientation: 3, position:[10, 10]}
+		]
 	},
 	computed: {
 		orientationStyle: function(){

@@ -203,7 +203,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	opacity: 0;
+	/*opacity: 0;*/
 }
 #buttons div {
 	padding: 8px;

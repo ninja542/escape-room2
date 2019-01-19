@@ -13,6 +13,7 @@
 						<img v-bind:src="iconSVG[item]" v-for="item in inventory" class="icons" v-bind:class="{active: isActive == item}" v-on:click="isActive = item">
 					</div>
 				</div>
+				<object-examine v-for="object in object_examine" :info="object"	>
 				<!-- <div id="screwdriver" v-on:click.once="pickup('screwdriver')" v-show="inventory.includes('screwdriver') == false && orientation == 3 && mode == 'examine'"></div> -->
 				<!-- <div id="lighter" v-on:click.once="examine('lighter')" v-show="inventory.includes('lighter') == false && orientation == 3 && mode == 'examine'"></div> -->
 				<!-- <div id="tape" v-on:click.once="examine('tape')" v-show="inventory.includes('tape') == false && orientation == 3 && mode == 'examine'"></div> -->
@@ -38,8 +39,10 @@
 			<!-- </div> -->
 		<!-- </div> -->
 		<script src="https://vuejs.org/js/vue.js"></script>
+		<script src="https://unpkg.com/vuex"></script>
 		<!-- <script src="vue.js"></script> -->
 		<!-- <script src="anime.min.js"></script> -->
+		<!-- <script src="component.js"></script> -->
 		<script src="room1_v1.js"></script>
 		<!-- <script src="story.js"></script> -->
 	</body>
