@@ -32,10 +32,7 @@ body {
 	border-color: grey;
 	border-width: 5px;
 }
-#screwdriver {
-
-}
-#lighter {
+/* #lighter {
 	position: absolute;
 	top: 10%;
 	left: 30%;
@@ -66,7 +63,7 @@ body {
 	position: absolute;
 	top: 5%;
 	left: 50%;
-	/*margin: auto;*/
+	margin: auto;
 	cursor: pointer;
 	width: 20%;
 	height: 75%;
@@ -90,7 +87,7 @@ body {
 	cursor: pointer;
 	border: solid 5px purple;
 }
-
+ */
 #iconwrapper {
 	position: absolute;
 	top: 20px;
@@ -98,8 +95,8 @@ body {
 	display: flex;
 	flex-direction: row-reverse;
 	flex-wrap: wrap;
-	width: 200px;
-	max-width: 200px;
+	width: 120px;
+	max-width: 120px;
 	/*height: 50px;*/
 	/*background-color: green;*/
 }

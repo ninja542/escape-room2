@@ -217,6 +217,9 @@ let app = new Vue({
 		mode: function(){
 			return store.state.mode;
 		},
+		isActive: function(){
+			return store.state.isActive;
+		},
 		// end data
 		orientationStyle: function(){
 			if (this.orientation == 0){
