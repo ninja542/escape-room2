@@ -134,6 +134,16 @@ let app = new Vue({
 			// template: name, orientation, position [left percentage, top percentage], size [width, height]
 			{name: "screwdriver", orientation: 3, position:[10, 10], size: [100, 100]},
 			{name: "lighter", orientation: 3, position: [40, 40], size: [100, 100]},
+			{name: "tape", orientation: 3, position: [40, 40], size: [10, 10]},
+			{name: "paperinvis", orientation: 2, position: [40, 40], size: [10, 10]}, //use hand on rug
+			{name: "candle", orientation: 2, position: [40, 40], size: [10, 10]}, //use hand in cubby hole
+			{name: "flashlight", orientation: 0, position: [40, 40], size: [10, 10]},
+			{name: "gibberish", orientation: 0, position: [40, 40], size: [10, 10]},
+			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10]},
+			{name: "thinwire", orientation: 0, position: [40, 40], size: [10, 10]}, //use flashlight on window
+			{name: "pliers", orientation: 2, position: [40, 40], size: [10, 10]}, //flashlight bottom cubby
+			{name: "sharpbone", orientation: 1, position: [40, 40], size: [10, 10]}, //use pliers on skeleton
+			{name: "key", orientation: 2, position: [40, 40], size: [10, 10]},
 		]
 	},
 	computed: {
@@ -528,7 +538,7 @@ function deathCheck(){
 
 /*
 	Find screwdriver on table, SCREWDRIVER = true, need to click on screwdriver on table
-  Open drawer in table, DRAWEROPEN = true
+	Open drawer in table, DRAWEROPEN = true
 	Find Duct Tape and Lighter, TAPE = true, LIGHTER = true
 		// Internal monologue, like "lighter feels hollow", to hint that lighter is almost empty
 	Saw open cupboard using screwdriver, ROPE = 0, CUPBOARDOPEN = true
