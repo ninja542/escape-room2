@@ -169,18 +169,19 @@ Vue.component("object-use", {
 		mode: function(){
 			return store.state.mode;
 		},
-		check: function(){
-			return store.state.inventory.includes(this.info.name);
-		},
+		isActive: function(){
+			return store.state.isActive;
+		}
 	},
 	methods: {
 		use: function(item){
 			// store.commit("additem", item);
+			store.commit("removeitem", item)
 			console.log("used " + item);
 		}
 	},
 	template: `
-		<div :id="info.name" v-on:click.once="pickup(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'examine'" v-bind:style="styleObject">
+		<div :id="info.name" v-on:click.once="use(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'use'" v-bind:style="styleObject">
 		</div>
 	`
 });
@@ -228,7 +229,7 @@ let app = new Vue({
 		orientationStyle: function(){
 			if (this.orientation == 0){
 				// document.getElementById("game").style.backgroundImage = "url(NorthWall.png)";
-				document.getElementById("game").style.backgroundImage = "url(North WallKey.png)";
+				document.getElementById("game").style.backgroundImage = "url('North WallKey.png')";
 				return {borderTopColor: "#FF0000"};
 			}
 			else if (this.orientation == 1){
