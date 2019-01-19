@@ -113,6 +113,9 @@ body {
 .activebutton {
 	background-color: rgba(255, 255, 255, 0.3);
 }
+.combine {
+	border: solid 2px green;
+}
 #story {
 	/*overflow: hidden;*/
 	/*white-space: nowrap;*/

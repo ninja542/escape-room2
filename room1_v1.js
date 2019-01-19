@@ -138,9 +138,14 @@ Vue.component("object-examine", {
 		}
 	},
 	template: `
-		<div :id="info.name" v-on:click.once="pickup(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'examine' && this.flag == true" v-bind:style="styleObject">
+		<div :id="info.name" v-on:click.once="pickup(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'examine' && info.flag == true" v-bind:style="styleObject">
 		</div>
 	`
+});
+
+// requirement flag, changes a flag, item
+Vue.component("event-use", {
+	props: [""]
 });
 
 Vue.component("object-use", {
@@ -181,7 +186,7 @@ Vue.component("object-use", {
 		use: function(item){
 			// store.commit("additem", item);
 			store.commit("removeitem", item)
-			console.log("used " + item);
+			console.log("used " + this.isActive + " gained " + item);
 		}
 	},
 	template: `
@@ -198,9 +203,9 @@ let app = new Vue({
 		object_examine: [
 			// template: name, orientation, position [left percentage, top percentage], size [width, height], flag
 			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10], flag: safe1Correct, uses: 4},
+			{name: "key", orientation: 0, position: [40, 40], size: [20, 20], flag: safe2Correct, uses: 1},
 			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10], flag: mirrorBroken, uses: 1},
-			{name: "key", orientation: 1, position: [40, 40], size: [20, 20], flag: safe2Correct, uses: 1},
-			{name: "screwdriver", orientation: 3, position:[10, 10], size: [50, 50], uses: 1},
+			{name: "screwdriver", orientation: 3, position:[10, 10], size: [50, 50], flag: true, uses: 1},
 			{name: "lighter", orientation: 3, position: [40, 40], size: [50, 50], flag: drawerOpen, uses: 1},
 			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10], flag: drawerOpen,  uses: 1},
 		],
@@ -214,7 +219,8 @@ let app = new Vue({
 			],
 		object_combine: [
 
-		]
+			],
+		combine_list: [],
 	},
 	computed: {
 		// start data
@@ -303,7 +309,22 @@ let app = new Vue({
 		},
 		setactive: function(item){
 			store.commit("setActive", item);
-		}
+		},
+		add_combine: function(item){
+			if(this.combine_list.length < 2 && this.mode == "combine"){
+				this.combine_list.push(item);
+			}
+			if(this.combine_list.length == 2){
+				this.giveItem();
+			}
+		},
+		giveItem: function(){
+			if(this.combine_list.includes("papervis", "hand")){
+				console.log("hi")
+				// state.commit("additem", papervis);
+			}
+			this.combine_list = [];
+		},
 		// fadeText: function(item){
 		// 	console.log("picked up" + item)
 		// },

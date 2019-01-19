@@ -17,7 +17,7 @@
 				<div id="orientation" v-bind:style="orientationStyle"></div>
 				<div id="inventory">
 					<div id="iconwrapper">
-						<img v-bind:src="iconSVG[item]" v-for="item in inventory" class="icons" v-bind:class="{active: isActive == item}" v-on:click="setactive(item)">
+						<img v-bind:src="iconSVG[item]" v-for="item in inventory" class="icons" v-bind:class="{active: isActive == item, combine: combine_list.includes(item)}" v-on:click="setactive(item); add_combine(item)">
 					</div>
 				</div>
 				<div id="buttons">
@@ -26,6 +26,7 @@
 					<div v-on:click="setmode('use')" v-bind:class="{activebutton: mode == 'use'}"> USE </div>
 				</div>
 				<object-examine v-for="(object) in object_examine" v-bind:info="object"></object-examine>
+
 				<object-use v-for="object in object_use" v-bind:useinfo="object"></object-use>
 				<!-- <div id="screwdriver" v-on:click.once="pickup('screwdriver')" v-show="inventory.includes('screwdriver') == false && orientation == 3 && mode == 'examine'"></div> -->
 				<!-- <div id="lighter" v-on:click.once="examine('lighter')" v-show="inventory.includes('lighter') == false && orientation == 3 && mode == 'examine'"></div> -->
