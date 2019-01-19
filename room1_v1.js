@@ -44,6 +44,9 @@ var store = new Vuex.Store({
 		},
 		setorientation(state, amount){
 			state.orientation = amount;
+		},
+		setmode(state, mode){
+			state.mode = mode;
 		}
 	},
 	getters: {
@@ -161,6 +164,9 @@ let app = new Vue({
 				store.commit("setorientation", 3)
 
 			}
+		},
+		setmode: function(mode){
+			store.commit("setmode", mode);
 		},
 		pickup: function(item){
 			this.inventory.push(item);
@@ -457,28 +463,6 @@ let app = new Vue({
 			else {
 				this.fadeText("I don't think these two items are compatible");
 			}
-		},
-		fadeText: function(message, time = 2000){
-			document.getElementById("dialoguetext").innerText = message;
-			anime({
-				targets: "#dialoguetext",
-				opacity: [
-					{value: 1, duration: time},
-					{value: 0, duration: time}
-				],
-				easing: "easeInOutQuart",
-			});
-		},
-		fadeText2: function(message, time = 3000){
-			document.getElementById("acquiredtext").innerText = message;
-			anime({
-				targets: "#acquiredtext",
-				opacity: [
-					{value: 1, duration: time},
-					{value: 0, duration: time}
-				],
-				easing: "easeInOutQuart",
-			});
 		}
 	},
 	mounted: function(){

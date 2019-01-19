@@ -26,9 +26,9 @@
 				<!-- <div id="acquired"><p id="acquiredtext"></p></div> -->
 				<!-- <div id="dialogue"><p id="dialoguetext"></p></div> -->
 				<div id="buttons">
-					<div v-on:click="mode = 'examine'"> EXAMINE </div>
-					<div v-on:click="mode = 'combine'"> COMBINE </div>
-					<div v-on:click="mode = 'use'"> USE </div>
+					<div v-on:click="setmode('examine')"> EXAMINE </div>
+					<div v-on:click="setmode('combine')"> COMBINE </div>
+					<div v-on:click="setmode('use')"> USE </div>
 				</div>
 			</div>
 			<!-- <div id="black"></div> -->
