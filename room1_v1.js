@@ -89,6 +89,10 @@ var store = new Vuex.Store({
 
 // info has: position, the name, orientation, condition_flags, mode
 
+// flag documentation: put flag: name_of_flag_variable
+// the v-show will only show if flag is true
+// flag variable will change when certain actions are completed.
+
 Vue.component("object-examine", {
 	props: {
 		info: {
@@ -145,7 +149,7 @@ Vue.component("object-use", {
 	data: function(){
 		return {
 			styleObject: {
-				position: "absolute",
+				position: "relative",
 				top: this.info.position[1] + "%",
 				left: this.info.position[0] + "%",
 				width: this.info.size[0] + "px",
@@ -186,12 +190,12 @@ let app = new Vue({
 		ropehealth: 20,
 		spiderhealth: 2,
 		object_examine: [
-			// template: name, orientation, position [left percentage, top percentage], size [width, height]
+			// template: name, orientation, position [left percentage, top percentage], size [width, height], flag
 			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10]},
 			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10]},
 			{name: "key", orientation: 1, position: [40, 40], size: [20, 20]},
-			{name: "screwdriver", orientation: 3, position:[10, 10], size: [100, 100]},
-			{name: "lighter", orientation: 3, position: [40, 40], size: [100, 100]},
+			{name: "screwdriver", orientation: 3, position:[10, 10], size: [50, 50]},
+			{name: "lighter", orientation: 3, position: [40, 40], size: [50, 50]},
 			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10]},
 		],
 		object_use: [

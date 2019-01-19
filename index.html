@@ -21,9 +21,9 @@
 					</div>
 				</div>
 				<div id="buttons">
-					<div v-on:click="setmode('examine')"> EXAMINE </div>
-					<div v-on:click="setmode('combine')"> COMBINE </div>
-					<div v-on:click="setmode('use')"> USE </div>
+					<div v-on:click="setmode('examine')" v-bind:class="{activebutton: mode == 'examine'}"> EXAMINE </div>
+					<div v-on:click="setmode('combine')" v-bind:class="{activebutton: mode == 'combine'}"> COMBINE </div>
+					<div v-on:click="setmode('use')" v-bind:class="{activebutton: mode == 'use'}"> USE </div>
 				</div>
 				<object-examine v-for="(object) in object_examine" v-bind:info="object"	>
 				<!-- <div id="screwdriver" v-on:click.once="pickup('screwdriver')" v-show="inventory.includes('screwdriver') == false && orientation == 3 && mode == 'examine'"></div> -->
