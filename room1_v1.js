@@ -33,6 +33,7 @@ let fire = false; // (true = fire made, false = no fire made)
 let buttonOrder = "nswe"; // four characters with order that the buttons are pressed in (n = north, s = south, w = west, e = east, correct is nswe)
 let safe = false; // true = safe revealed, false = safe not revealed
 let safeCombo = "5912"; // four numbers in string -- correct combo  FIXIT
+let safe1Correct = false;
 let flashlight = false; // true = having flashlight, false = not flashlight or flashlight out of power
 let flashlightOn = false; // true = flashlight turned on, false = flashlight turned off
 let flashlightUse = 4; // (0-4) uses
@@ -50,6 +51,7 @@ let codeComplete = false; // true if codes are combined
 let lightBroken = false; // true is sharp bone is used
 let lightExtract = false; // true if pliers used on light
 let safeCombo2 = "2159"; // second correct combo
+let safe2Correct = false;
 let key = false;
 let keyHiddenDoor = false; // true if key is used on hidden door
 let keyOriginalDoor = false // true if key is used on original door
