@@ -13,7 +13,7 @@
 						<img v-bind:src="iconSVG[item]" v-for="item in inventory" class="icons" v-bind:class="{active: isActive == item}" v-on:click="isActive = item">
 					</div>
 				</div>
-				<object-examine v-for="object in object_examine" :info="object"	>
+				<object-examine v-for="(object) in object_examine" v-bind:info="object"	>
 				<!-- <div id="screwdriver" v-on:click.once="pickup('screwdriver')" v-show="inventory.includes('screwdriver') == false && orientation == 3 && mode == 'examine'"></div> -->
 				<!-- <div id="lighter" v-on:click.once="examine('lighter')" v-show="inventory.includes('lighter') == false && orientation == 3 && mode == 'examine'"></div> -->
 				<!-- <div id="tape" v-on:click.once="examine('tape')" v-show="inventory.includes('tape') == false && orientation == 3 && mode == 'examine'"></div> -->
