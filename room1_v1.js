@@ -9,6 +9,11 @@ let inventoryMap = {
 	hand: "hand.svg",
 	fire: "fire.svg",
 	gibberish: "papervis.svg",
+	code2: "papervis.svg",
+	thinwire: "lockpick.svg",
+	pliers: "plier.svg",
+	sharpbone: "sharp_bone.svg",
+	key: "key.svg",
 };
 
 // ----------VARIABLES--------- //
@@ -133,13 +138,13 @@ let app = new Vue({
 		spiderhealth: 2,
 		object_examine: [
 			// template: name, orientation, position [left percentage, top percentage], size [width, height]
+			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10]},
+			{name: "gibberish", orientation: 0, position: [30, 30], size: [10, 10]},
+			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10]},
+			{name: "key", orientation: 2, position: [40, 40], size: [20, 20]},
 			{name: "screwdriver", orientation: 3, position:[10, 10], size: [100, 100]},
 			{name: "lighter", orientation: 3, position: [40, 40], size: [100, 100]},
-			{name: "tape", orientation: 3, position: [40, 40], size: [10, 10]},
-			{name: "flashlight", orientation: 0, position: [40, 40], size: [10, 10]},
-			{name: "gibberish", orientation: 0, position: [40, 40], size: [10, 10]},
-			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10]},
-			{name: "key", orientation: 2, position: [40, 40], size: [10, 10]},
+			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10]},
 		],
 		object_use: [
 			{name: "paperinvis", orientation: 2, position: [40, 40], size: [10, 10]}, //use hand on rug
@@ -183,18 +188,18 @@ let app = new Vue({
 			}
 		},
 		iconSVG: function(){
-			// return this.inventory.map((x) => inventoryMap[x]);
-			return {
-				tape: "ducttape.svg",
-				screwdriver: "screwdriver.svg",
-				paperinvis: "paperinvis.svg",
-				papervis: "papervis.svg",
-				lighter: "lighter.svg",
-				candle: "candle.svg",
-				flashlight: "flashlight.svg",
-				hand: "hand.svg",
-				fire: "fire.svg"
-			};
+			return inventoryMap;
+			// return {
+			// 	tape: "ducttape.svg",
+			// 	screwdriver: "screwdriver.svg",
+			// 	paperinvis: "paperinvis.svg",
+			// 	papervis: "papervis.svg",
+			// 	lighter: "lighter.svg",
+			// 	candle: "candle.svg",
+			// 	flashlight: "flashlight.svg",
+			// 	hand: "hand.svg",
+			// 	fire: "fire.svg"
+			// };
 		},
 		// talk: function(){
 			// return "";
