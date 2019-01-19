@@ -35,9 +35,16 @@ let flashlightUse = 4; // (0-4) uses
 var store = new Vuex.Store({
 	state: {
 		inventory: ["hand"], // items in inventory
+		orientation: 0, // 0 = north, 1 = east, 2 = south, 3 = west
+		mode: "", // examine, combine, use
 	},
 	mutations: {
-
+		changeorientation(state, amount){
+			state.orientation += amount;
+		},
+		setorientation(state, amount){
+			state.orientation = amount;
+		}
 	},
 	getters: {
 
@@ -55,19 +62,22 @@ Vue.component("object-examine", {
 		inventory: function(){
 			return store.state.inventory;
 		},
+		orientation: function(){
+			return store.state.orientation;
+		},
+		mode: function(){
+			return store.state.mode;
+		}
 	},
 	template: `
-		<div id="this.info.name" v-on:click.once="pickup(this.info.name)" v-show="this.inventory.includes('this.info.name') == false && this.info.orientation == this.orientation && mode == this.info.name"></div>
+		<div :id="this.info.name" v-on:click.once="pickup(this.info.name)" v-show="this.inventory.includes('this.info.name') == false && this.info.orientation == this.orientation && this.mode == 'examine'"></div>
 	`
 })
 
 let app = new Vue({
 	el: "#game",
 	data: {
-		orientation: 0, // 0 = north, 1 = east, 2 = south, 3 = west
-		inventory: store.state.inventory,
 		isActive: "hand",
-		mode: "", // examine, combine, use
 		ropehealth: 20,
 		spiderhealth: 2,
 		object_examine: [
@@ -75,6 +85,17 @@ let app = new Vue({
 		]
 	},
 	computed: {
+		// start data
+		inventory: function(){
+			return store.state.inventory;
+		},
+		orientation: function(){
+			return store.state.orientation;
+		},
+		mode: function(){
+			return store.state.mode;
+		},
+		// end data
 		orientationStyle: function(){
 			if (this.orientation == 0){
 				document.getElementById("game").style.backgroundImage = "url(NorthWall.png)";
@@ -122,18 +143,23 @@ let app = new Vue({
 		},
 		increaseOrientation: function(){
 			if (this.orientation != 3){
-				this.orientation += 1;
+				// this.orientation += 1;
+				store.commit("changeorientation", 1)
 			}
 			else {
-				this.orientation = 0;
+				// this.orientation = 0;
+				store.commit("setorientation", 0)
 			}
 		},
 		decreaseOrientation: function(){
 			if (this.orientation != 0){
-				this.orientation -= 1;
+				// this.orientation -= 1;
+				store.commit("changeorientation", -1)
 			}
 			else {
-				this.orientation = 3;
+				// this.orientation = 3;
+				store.commit("setorientation", 3)
+
 			}
 		},
 		pickup: function(item){
