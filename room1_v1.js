@@ -136,7 +136,7 @@ Vue.component("object-examine", {
 		}
 	},
 	template: `
-		<div :id="info.name" v-on:click.once="pickup(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'examine'" v-bind:style="styleObject">
+		<div :id="info.name" v-on:click.once="pickup(info.name)" v-show="this.check == false && info.orientation == this.orientation && this.mode == 'examine' && this.flag == true" v-bind:style="styleObject">
 		</div>
 	`
 });
