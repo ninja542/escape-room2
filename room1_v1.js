@@ -319,9 +319,9 @@ let app = new Vue({
 			}
 		},
 		giveItem: function(){
-			if(this.combine_list.includes("papervis", "hand")){
+			if(this.combine_list.includes("screwdriver", "hand")){
 				console.log("hi")
-				// state.commit("additem", papervis);
+				store.commit("additem", "lighter");
 			}
 			this.combine_list = [];
 		},
