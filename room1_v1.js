@@ -249,7 +249,7 @@ Vue.component("event-examine", {
 		}
 	},
 	methods: {
-		use: function(item){
+		trigger: function(flag){
 			// store.commit("additem", item);
 			store.commit("removeitem", this.isActive);
 
@@ -257,7 +257,7 @@ Vue.component("event-examine", {
 		}
 	},
 	template: `
-		<div :id="eventinfo.name" v-on:click.once="use(eventinfo.name)" v-show="eventinfo.orientation == this.orientation && this.mode == 'examine' && this.flag[eventinfo.flag] == true" v-bind:style="styleObject">
+		<div :id="eventinfo.name" v-on:click.once="trigger(info.flag)" v-show="eventinfo.orientation == this.orientation && this.mode == 'examine' && this.flag[eventinfo.flag] == true" v-bind:style="styleObject">
 		</div>
 	`
 });
@@ -375,7 +375,7 @@ let app = new Vue({
 				return {borderBottomColor: "FF0000"};
 			}
 			else if (this.orientation == 3){
-				document.getElementById("game").style.backgroundImage = "url(DeskDrawerOpen.png)";
+				document.getElementById("game").style.backgroundImage = "url(WestWall.png)";
 				return {borderLeftColor: "FF0000"};
 			}
 			else if (this.orientation == 4){
