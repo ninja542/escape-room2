@@ -192,6 +192,9 @@ Vue.component("event-use", {
 		},
 		isActive: function(){
 			return store.state.isActive;
+		},
+		flag: function(){
+			return store.state.flags;
 		}
 	},
 	methods: {
@@ -203,7 +206,7 @@ Vue.component("event-use", {
 		}
 	},
 	template: `
-		<div :id="eventinfo.name" v-on:click.once="use(eventinfo.name)" v-show="eventinfo.orientation == this.orientation && this.mode == 'use'" v-bind:style="styleObject">
+		<div :id="eventinfo.name" v-on:click.once="use(eventinfo.name)" v-show="eventinfo.orientation == this.orientation && this.mode == 'use' && this.flag[eventinfo.flag] == true" v-bind:style="styleObject">
 		</div>
 	`
 });
@@ -238,8 +241,8 @@ Vue.component("event-examine", {
 		mode: function(){
 			return store.state.mode;
 		},
-		isActive: function(){
-			return store.state.isActive;
+		flag: function(){
+			return store.state.flags;
 		}
 	},
 	methods: {
@@ -251,7 +254,7 @@ Vue.component("event-examine", {
 		}
 	},
 	template: `
-		<div :id="eventinfo.name" v-on:click.once="use(eventinfo.name)" v-show="eventinfo.orientation == this.orientation && this.mode == 'use'" v-bind:style="styleObject">
+		<div :id="eventinfo.name" v-on:click.once="use(eventinfo.name)" v-show="eventinfo.orientation == this.orientation && this.mode == 'examine' && this.flag[eventinfo.flag] == true" v-bind:style="styleObject">
 		</div>
 	`
 });
@@ -287,6 +290,9 @@ Vue.component("object-use", {
 		},
 		isActive: function(){
 			return store.state.isActive;
+		},
+		flag: function(){
+			return store.state.flags;
 		}
 	},
 	methods: {
@@ -301,7 +307,7 @@ Vue.component("object-use", {
 		}
 	},
 	template: `
-		<div :id="useinfo.name" v-on:click.once="use(useinfo.name)" v-show="useinfo.orientation == this.orientation && this.mode == 'use'" v-bind:style="styleObject">
+		<div :id="useinfo.name" v-on:click.once="use(useinfo.name)" v-show="useinfo.orientation == this.orientation && this.mode == 'use' && this.flag[useinfo.flag] == true" v-bind:style="styleObject">
 		</div>
 	`
 });
@@ -313,20 +319,20 @@ let app = new Vue({
 		spiderhealth: 2,
 		object_examine: [
 			// template: name, orientation, position [left percentage, top percentage], size [width, height], flag
-			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10], flag: safe1Correct, uses: 4},
-			{name: "key", orientation: 0, position: [40, 40], size: [20, 20], flag: safe2Correct, uses: 1},
-			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10], flag: mirrorBroken, uses: 1},
-			{name: "lighter", orientation: 3, position: [40, 40], size: [50, 50], flag: drawerOpen, uses: 1},
-			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10], flag: drawerOpen,  uses: 1},
+			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10], flag: "safe1Correct", uses: 4},
+			{name: "key", orientation: 0, position: [40, 40], size: [20, 20], flag: "safe2Correct", uses: 1},
+			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10], flag: "mirrorBroken", uses: 1},
+			{name: "lighter", orientation: 3, position: [40, 40], size: [50, 50], flag: "drawerOpen", uses: 1},
+			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10], flag: "drawerOpen",  uses: 1},
 			{name: "screwdriver", orientation: 4, position:[30, 30], size: [50, 50], flag: true, uses: 1},
 		],
 		object_use: [
 			{name: "gibberish", orientation: 0, position: [30, 30], size: [10, 10]}, //use flashlight on safe
 			{name: "thinwire", orientation: 0, position: [40, 40], size: [10, 10]}, //use flashlight on window
-			{name: "paperinvis", orientation: 2, position: [40, 40], size: [10, 10]}, //use hand on rug
+			{name: "paperinvis", orientation: 1, position: [40, 40], size: [10, 10], flag: "mirrorBroken"}, //use hand on rug
+			{name: "sharpbone", orientation: 1, position: [40, 40], size: [10, 10]}, //use pliers on skeleton
 			{name: "candle", orientation: 2, position: [40, 40], size: [10, 10]}, //use hand in cubby hole
 			{name: "pliers", orientation: 2, position: [40, 40], size: [10, 10]}, //flashlight bottom cubby
-			{name: "sharpbone", orientation: 1, position: [40, 40], size: [10, 10]}, //use pliers on skeleton
 		],
 		object_combine: [
 
