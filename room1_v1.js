@@ -375,7 +375,7 @@ let app = new Vue({
 				return {borderBottomColor: "FF0000"};
 			}
 			else if (this.orientation == 3){
-				document.getElementById("game").style.backgroundImage = "url(DeskDrawerOpen.png)";
+				document.getElementById("game").style.backgroundImage = "url(DeskInitial.png)";
 				return {borderLeftColor: "FF0000"};
 			}
 			else if (this.orientation == 4){
