@@ -15,7 +15,133 @@ let inventoryMap = {
 	sharpbone: "sharp_bone.svg",
 	key: "key.svg",
 };
-
+let useMap = {
+	code1: "gibberish",
+	desk: "screwdriver",
+}
+		// 		else if (item == "cupboard"){
+		// 			if (this.isActive == "lighter"){
+		// 				this.fadeText("This seems unlikely to work, but let's try. . . The rope is only slightly charred. The lighter is out of fluid now...");
+		// 			}
+		// 			if (this.isActive == "screwdriver"){
+		// 				this.fadeText("I think this is called death by a thousand paper cuts. I'll need to cut many times.");
+		// 				this.ropehealth -= 1;
+		// 				if (this.ropehealth == 0){
+		// 					this.fadeText("What an ordeal. I think I would have prefered an obscure puzzle instead.");
+		// 				}
+		// 			}
+		// 		}
+		// 		else if (item == "switch"){
+		// 			if (this.isActive == "screwdriver"){
+		// 				this.fadeText("Maybe I can just force it to work... SNAP. I knew I shouldn't have dropped that lever handling class.");
+		// 			}
+		// 			if (this.isActive == "hand"){
+		// 				this.fadeText("I think I have this puzzle figured out.");
+		// 				// puzzle code for switch, has the pass/fail
+		// 			}
+		// 		}
+		// 		else if (item == "drawer"){
+		// 			if (this.isActive == "screwdriver"){
+		// 				this.fadeText("Maybe I can force it open with this...there we go. ");
+		// 			}
+		// 		}
+		// 		else if (item == "skeleton"){
+		// 			if (this.isActive == "plier"){
+		// 				this.fadeText("Looks like these bones come off easily. Yoink!");
+		// 				this.pickup("Sharp bone");
+		// 			}
+		// 		}
+		// 		else if (item == "light"){
+		// 			if (this.isActive == "plier"){
+		// 				this.fadeText("Now I can get whatever is stuck in there. Looks like another number puzzle.");
+		// 				setTimeout(function(){app.fadeText("2 is only bordered by one other number. Odd. The odd numbers are in ascending order.");}, 4000);
+		// 			}
+		// 		}
+		// 		else if (item == "top cubby"){
+		// 			if (this.isActive == "lighter"){
+		// 				this.fadeText("The cubby is illuminated.");
+		// 				setTimeout(function(){app.pickup("candle");}, 2000);
+		// 				setTimeout(function(){app.fadeText("The lighter is out of fluid now...");}, 4000);
+		// 			}
+		// 			if (this.isActive == "hand"){
+		// 				this.fadeText("Gulp. Just gotta go for it...Oh! I feel something.");
+		// 				setTimeout(function(){app.pickup("candle");}, 2000);
+		// 				setTimeout(function(){app.fadeText("Hey there's a number written on the bottom. It's the number 2.");}, 4000);
+		// 			}
+		// 		}
+		// 		else if (item == "bottom cubby"){
+		// 			if (this.isActive == "wire"){
+		// 				this.fadeText("Another marketable skill for my resume. CLICK. I'm in.");
+		// 				// change to unlocked bottom cubby
+		// 			}
+		// 		}
+		// 		else if (item == "unlocked bottom cubby"){
+		// 			if (this.isActive == "flashlight" && this.spiderhealth > 0){
+		// 				this.fadeText("Now that I have this, I won't surprised again... WOAH A SPIDER. Oh crap it's coming at me!");
+		// 				// spider attack animation thing
+		// 			}
+		// 			if (this.isActive == "flashlight" && this.spiderhealth == 0){
+		// 				this.fadeText("If there's a second spider, I'd rather just die. There's another tool back here.");
+		// 				setTimeout(function(){app.pickup("pliers");}, 4000);
+		// 			}
+		// 		}
+		// 		else if (item == "spider"){
+		// 			if (this.isActive == "bone" && this.spiderhealth > 0){
+		// 				this.fadeText("It won't go down I'll have to use it again!");
+		// 			}
+		// 			else {
+		// 				this.fadeText("Die! Die! Back to the hell you came from!");
+		// 			}
+		// 		}
+		// 		else if (item == "mirror"){
+		// 			if (this.isActive == "bone"){
+		// 				this.fadeText("I bet there's something behind this mirror. As a bonus, I won't have to look at my face anymore... I'm on a roll here!",  3000);
+		// 			}
+		// 		}
+		// 		else if (item == "light"){
+		// 			if (this.isActive == "bone"){
+		// 				this.fadeText("Every intelligent cell in my body is telling me not to break my only light source, but I must follow the directions from an obscure hint on a scrap of paper hidden behind a mirror!", 4000);
+		// 			}
+		// 		}
+		// 		else if (item == "og door"){
+		// 			if (this.isActive == "wire"){
+		// 				this.fadeText("Trust me, I'm an expert at lockpicking. CREAK. Nobody heard that. The wire's warped and useless now.");
+		// 				this.inventory.splice(this.inventory.indexOf("wire"), 1);
+		// 			}
+		// 			if (this.isActive == "key"){
+		// 				this.fadeText("I'm free! Uh why is it pitch black? What's that sound coming closer?! Fate is cruel.");
+		// 			}
+		// 		}
+		// 		else if (item == "hidden door"){
+		// 			if (this.isActive == "hand"){
+		// 				this.fadeText("It's locked. I need a key but I can't search for one in this darkness.");
+		// 			}
+		// 			if (this.isActive == "key"){
+		// 				this.fadeText("I'm free! Thanks for playing everyone! Onward to my routine and boring normal life!");
+		// 			}
+		// 		}
+		// 		else if (item == "safe" && this.inventory.includes("flashlight") == false){
+		// 			if (this.isActive == "hand"){
+		// 				this.fadeText("Let's give this a whirl. Hopefully, it doesn't do something dumb like explode if I get it wrong.");
+		// 			}
+		// 			// stuff for safe cracking
+		// 		}
+		// 		else if (item == "safe" && this.inventory.includes("flashlight")){
+		// 			if (this.isActive == "hand"){
+		// 				this.fadeText("Let's see if there's anything underneath here. Bingo! It's a piece of paper with some gibberish... Slightly better than being blank I suppose.");
+		// 				this.pickup('gibberishpaper');
+		// 			}
+		// 		}
+		// 		else if (item == "safe" && this.inventory.includes("gibberishpaper")){
+		// 			if (this.isActive == "hand"){
+		// 				this.fadeText("Time to reveal the last secret of this safe. ");
+		// 				// safe logic
+		// 			}
+		// 		}
+		// 		else {
+		// 			this.fadeText("I don't think this will help me here.");
+		// 		}
+		// 	},
 // ----------VARIABLES--------- //
 let screwdriver = false;
 let drawerOpen = false;
@@ -145,9 +271,97 @@ Vue.component("object-examine", {
 
 // requirement flag, changes a flag, item
 Vue.component("event-use", {
-	props: [""]
-});
+	props: {
+		eventinfo: {
+			type: Object,
+		}
+	},
+	data: function(){
+		return {
+			styleObject: {
+				position: "absolute",
+				top: this.eventinfo.position[1] + "%",
+				left: this.eventinfo.position[0] + "%",
+				width: this.eventinfo.size[0] + "px",
+				height: this.eventinfo.size[1] + "px",
+				cursor: "pointer",
+				border: "solid 5px orange",
+			}
+		}
+	},
+	computed: {
+		inventory: function(){
+			return store.state.inventory;
+		},
+		orientation: function(){
+			return store.state.orientation;
+		},
+		mode: function(){
+			return store.state.mode;
+		},
+		isActive: function(){
+			return store.state.isActive;
+		}
+	},
+	methods: {
+		use: function(item){
+			// store.commit("additem", item);
+			store.commit("removeitem", this.isActive);
 
+			console.log("used " + this.isActive + " gained " + item);
+		}
+	},
+	template: `
+		<div :id="eventinfo.name" v-on:click.once="use(eventinfo.name)" v-show="eventinfo.orientation == this.orientation && this.mode == 'use'" v-bind:style="styleObject">
+		</div>
+	`
+});
+Vue.component("event-examine", {
+	props: {
+		eventinfo: {
+			type: Object,
+		}
+	},
+	data: function(){
+		return {
+			styleObject: {
+				position: "absolute",
+				top: this.eventinfo.position[1] + "%",
+				left: this.eventinfo.position[0] + "%",
+				width: this.eventinfo.size[0] + "px",
+				height: this.eventinfo.size[1] + "px",
+				cursor: "pointer",
+				border: "solid 5px orange",
+			}
+		}
+	},
+	computed: {
+		inventory: function(){
+			return store.state.inventory;
+		},
+		orientation: function(){
+			return store.state.orientation;
+		},
+		mode: function(){
+			return store.state.mode;
+		},
+		isActive: function(){
+			return store.state.isActive;
+		}
+	},
+	methods: {
+		use: function(item){
+			// store.commit("additem", item);
+			store.commit("removeitem", this.isActive);
+
+			console.log("used " + this.isActive + " gained " + item);
+		}
+	},
+	template: `
+		<div :id="eventinfo.name" v-on:click.once="use(eventinfo.name)" v-show="eventinfo.orientation == this.orientation && this.mode == 'use'" v-bind:style="styleObject">
+		</div>
+	`
+});
 Vue.component("object-use", {
 	props: {
 		useinfo: {
@@ -185,8 +399,12 @@ Vue.component("object-use", {
 	methods: {
 		use: function(item){
 			// store.commit("additem", item);
-			store.commit("removeitem", item)
+			store.commit("removeitem", this.isActive);
+			store.commit("additem", item)
 			console.log("used " + this.isActive + " gained " + item);
+			// if (item == "screwdriver"){
+
+			// }
 		}
 	},
 	template: `
@@ -216,10 +434,13 @@ let app = new Vue({
 			{name: "candle", orientation: 2, position: [40, 40], size: [10, 10]}, //use hand in cubby hole
 			{name: "pliers", orientation: 2, position: [40, 40], size: [10, 10]}, //flashlight bottom cubby
 			{name: "sharpbone", orientation: 1, position: [40, 40], size: [10, 10]}, //use pliers on skeleton
-			],
+		],
 		object_combine: [
 
-			],
+		],
+		event_use: [
+
+		],
 		combine_list: [],
 	},
 	computed: {
