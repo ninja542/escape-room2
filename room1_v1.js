@@ -15,172 +15,43 @@ let inventoryMap = {
 	sharpbone: "sharp_bone.svg",
 	key: "key.svg",
 };
-let useMap = {
-	code1: "gibberish",
-	desk: "screwdriver",
-}
-		// 		else if (item == "cupboard"){
-		// 			if (this.isActive == "lighter"){
-		// 				this.fadeText("This seems unlikely to work, but let's try. . . The rope is only slightly charred. The lighter is out of fluid now...");
-		// 			}
-		// 			if (this.isActive == "screwdriver"){
-		// 				this.fadeText("I think this is called death by a thousand paper cuts. I'll need to cut many times.");
-		// 				this.ropehealth -= 1;
-		// 				if (this.ropehealth == 0){
-		// 					this.fadeText("What an ordeal. I think I would have prefered an obscure puzzle instead.");
-		// 				}
-		// 			}
-		// 		}
-		// 		else if (item == "switch"){
-		// 			if (this.isActive == "screwdriver"){
-		// 				this.fadeText("Maybe I can just force it to work... SNAP. I knew I shouldn't have dropped that lever handling class.");
-		// 			}
-		// 			if (this.isActive == "hand"){
-		// 				this.fadeText("I think I have this puzzle figured out.");
-		// 				// puzzle code for switch, has the pass/fail
-		// 			}
-		// 		}
-		// 		else if (item == "drawer"){
-		// 			if (this.isActive == "screwdriver"){
-		// 				this.fadeText("Maybe I can force it open with this...there we go. ");
-		// 			}
-		// 		}
-		// 		else if (item == "skeleton"){
-		// 			if (this.isActive == "plier"){
-		// 				this.fadeText("Looks like these bones come off easily. Yoink!");
-		// 				this.pickup("Sharp bone");
-		// 			}
-		// 		}
-		// 		else if (item == "light"){
-		// 			if (this.isActive == "plier"){
-		// 				this.fadeText("Now I can get whatever is stuck in there. Looks like another number puzzle.");
-		// 				setTimeout(function(){app.fadeText("2 is only bordered by one other number. Odd. The odd numbers are in ascending order.");}, 4000);
-		// 			}
-		// 		}
-		// 		else if (item == "top cubby"){
-		// 			if (this.isActive == "lighter"){
-		// 				this.fadeText("The cubby is illuminated.");
-		// 				setTimeout(function(){app.pickup("candle");}, 2000);
-		// 				setTimeout(function(){app.fadeText("The lighter is out of fluid now...");}, 4000);
-		// 			}
-		// 			if (this.isActive == "hand"){
-		// 				this.fadeText("Gulp. Just gotta go for it...Oh! I feel something.");
-		// 				setTimeout(function(){app.pickup("candle");}, 2000);
-		// 				setTimeout(function(){app.fadeText("Hey there's a number written on the bottom. It's the number 2.");}, 4000);
-		// 			}
-		// 		}
-		// 		else if (item == "bottom cubby"){
-		// 			if (this.isActive == "wire"){
-		// 				this.fadeText("Another marketable skill for my resume. CLICK. I'm in.");
-		// 				// change to unlocked bottom cubby
-		// 			}
-		// 		}
-		// 		else if (item == "unlocked bottom cubby"){
-		// 			if (this.isActive == "flashlight" && this.spiderhealth > 0){
-		// 				this.fadeText("Now that I have this, I won't surprised again... WOAH A SPIDER. Oh crap it's coming at me!");
-		// 				// spider attack animation thing
-		// 			}
-		// 			if (this.isActive == "flashlight" && this.spiderhealth == 0){
-		// 				this.fadeText("If there's a second spider, I'd rather just die. There's another tool back here.");
-		// 				setTimeout(function(){app.pickup("pliers");}, 4000);
-		// 			}
-		// 		}
-		// 		else if (item == "spider"){
-		// 			if (this.isActive == "bone" && this.spiderhealth > 0){
-		// 				this.fadeText("It won't go down I'll have to use it again!");
-		// 			}
-		// 			else {
-		// 				this.fadeText("Die! Die! Back to the hell you came from!");
-		// 			}
-		// 		}
-		// 		else if (item == "mirror"){
-		// 			if (this.isActive == "bone"){
-		// 				this.fadeText("I bet there's something behind this mirror. As a bonus, I won't have to look at my face anymore... I'm on a roll here!",  3000);
-		// 			}
-		// 		}
-		// 		else if (item == "light"){
-		// 			if (this.isActive == "bone"){
-		// 				this.fadeText("Every intelligent cell in my body is telling me not to break my only light source, but I must follow the directions from an obscure hint on a scrap of paper hidden behind a mirror!", 4000);
-		// 			}
-		// 		}
-		// 		else if (item == "og door"){
-		// 			if (this.isActive == "wire"){
-		// 				this.fadeText("Trust me, I'm an expert at lockpicking. CREAK. Nobody heard that. The wire's warped and useless now.");
-		// 				this.inventory.splice(this.inventory.indexOf("wire"), 1);
-		// 			}
-		// 			if (this.isActive == "key"){
-		// 				this.fadeText("I'm free! Uh why is it pitch black? What's that sound coming closer?! Fate is cruel.");
-		// 			}
-		// 		}
-		// 		else if (item == "hidden door"){
-		// 			if (this.isActive == "hand"){
-		// 				this.fadeText("It's locked. I need a key but I can't search for one in this darkness.");
-		// 			}
-		// 			if (this.isActive == "key"){
-		// 				this.fadeText("I'm free! Thanks for playing everyone! Onward to my routine and boring normal life!");
-		// 			}
-		// 		}
-		// 		else if (item == "safe" && this.inventory.includes("flashlight") == false){
-		// 			if (this.isActive == "hand"){
-		// 				this.fadeText("Let's give this a whirl. Hopefully, it doesn't do something dumb like explode if I get it wrong.");
-		// 			}
-		// 			// stuff for safe cracking
-		// 		}
-		// 		else if (item == "safe" && this.inventory.includes("flashlight")){
-		// 			if (this.isActive == "hand"){
-		// 				this.fadeText("Let's see if there's anything underneath here. Bingo! It's a piece of paper with some gibberish... Slightly better than being blank I suppose.");
-		// 				this.pickup('gibberishpaper');
-		// 			}
-		// 		}
-		// 		else if (item == "safe" && this.inventory.includes("gibberishpaper")){
-		// 			if (this.isActive == "hand"){
-		// 				this.fadeText("Time to reveal the last secret of this safe. ");
-		// 				// safe logic
-		// 			}
-		// 		}
-		// 		else {
-		// 			this.fadeText("I don't think this will help me here.");
-		// 		}
-		// 	},
 // ----------VARIABLES--------- //
-let screwdriver = false;
-let drawerOpen = false;
-let tape = false;
-let tapeFull = true; // true = not fixed leaky pipe, false = duct tape is used up
-let cupboardOpen = false;
-let lighter = false; // true = found lighter, false = no lighter or lighter used up
-let leakyPipeFixed = false; // true = fixed, false = not fixed
-let rope = 50; // rope health (0-50)
+// let screwdriver = false;
+// let drawerOpen = false;
+// let tape = false;
+// let tapeFull = true; // true = not fixed leaky pipe, false = duct tape is used up
+// let cupboardOpen = false;
+// let lighter = false; // true = found lighter, false = no lighter or lighter used up
+// let leakyPipeFixed = false; // true = fixed, false = not fixed
+// let rope = 50; // rope health (0-50)
 let leverSwitch = 0; // numbers for switch positions, -1 can be broken (0,1,2,3,4)
 let paper = "hidden"; // maybe paper variable can change to reveal the message through string? (hidden, invisible, visible, burnt)
-let mirrorViewed = false; // (false = unviewed, true = viewed)
-let candle = false; // (true = found, false = unfound or used up)
-let fire = false; // (true = fire made, false = no fire made)
+// let mirrorViewed = false; // (false = unviewed, true = viewed)
+// let candle = false; // (true = found, false = unfound or used up)
+// let fire = false; // (true = fire made, false = no fire made)
 let buttonOrder = "nswe"; // four characters with order that the buttons are pressed in (n = north, s = south, w = west, e = east, correct is nswe)
-let safe = false; // true = safe revealed, false = safe not revealed
+// let safe = false; // true = safe revealed, false = safe not revealed
 let safeCombo = "5912"; // four numbers in string -- correct combo  FIXIT
-let safe1Correct = false;
-let flashlight = false; // true = having flashlight, false = not flashlight or flashlight out of power
-let flashlightOn = false; // true = flashlight turned on, false = flashlight turned off
-let flashlightUse = 4; // (0-4) uses
-let thinwire = false;
-let thinwireBroken = false; // true if used to force door knob
-let code1 = false;
-let paperMirror = false; // true = paper used on mirror
-let cubbyUnlocked = false; // true = unlocked with wire
-let spiderDead = false; // true if killed
-let pliers = false;
-let sharpbone = false;
-let mirrorBroken = false; // true if sharpbone is used
-let code2 = false;
-let codeComplete = false; // true if codes are combined
-let lightBroken = false; // true is sharp bone is used
-let lightExtract = false; // true if pliers used on light
-let safeCombo2 = "2159"; // second correct combo
-let safe2Correct = false;
-let key = false;
-let keyHiddenDoor = false; // true if key is used on hidden door
-let keyOriginalDoor = false // true if key is used on original door
+// let safe1Correct = false;
+// let flashlight = false; // true = having flashlight, false = not flashlight or flashlight out of power
+// let flashlightOn = false; // true = flashlight turned on, false = flashlight turned off
+// let flashlightUse = 4; // (0-4) uses
+// let thinwire = false;
+// let thinwireBroken = false; // true if used to force door knob
+// let code1 = false;
+// let paperMirror = false; // true = paper used on mirror
+// let cubbyUnlocked = false; // true = unlocked with wire
+// let spiderDead = false; // true if killed
+// let pliers = false;
+// let sharpbone = false;
+// let mirrorBroken = false; // true if sharpbone is used
+// let code2 = false;
+// let codeComplete = false; // true if codes are combined
+// let lightBroken = false; // true is sharp bone is used
+// let lightExtract = false; // true if pliers used on light
+// let safeCombo2 = "2159"; // second correct combo
+// let safe2Correct = false;
+// let key = false;
 
 var store = new Vuex.Store({
 	state: {
@@ -188,6 +59,26 @@ var store = new Vuex.Store({
 		isActive: "hand",
 		orientation: 0, // 0 = north, 1 = east, 2 = south, 3 = west
 		mode: "", // examine, combine, use
+		flags: {
+			cupboardOpen: false,
+			leakyPipeFixed: false,
+			safe: false,
+			safe1Correct: false,
+			thinwireBroken: false,
+			cubbyUnlocked: false,
+			mirrorViewed: false,
+			mirrorBroken: false,
+			paperMirror: false,
+			spiderDead: false,
+			code1: false,
+			code2: false,
+			codeComplete: false,
+			lightBroken: false,
+			lightExtract: false,
+			safe2Correct: false,
+			keyHiddenDoor: false,
+			keyOriginalDoor: false
+		}
 	},
 	mutations: {
 		changeorientation(state, amount){
@@ -316,6 +207,8 @@ Vue.component("event-use", {
 		</div>
 	`
 });
+
+// props: position, size, orientation, flags, trigger
 Vue.component("event-examine", {
 	props: {
 		eventinfo: {
@@ -423,9 +316,9 @@ let app = new Vue({
 			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10], flag: safe1Correct, uses: 4},
 			{name: "key", orientation: 0, position: [40, 40], size: [20, 20], flag: safe2Correct, uses: 1},
 			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10], flag: mirrorBroken, uses: 1},
-			{name: "screwdriver", orientation: 3, position:[30, 30], size: [50, 50], flag: true, uses: 1},
 			{name: "lighter", orientation: 3, position: [40, 40], size: [50, 50], flag: drawerOpen, uses: 1},
 			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10], flag: drawerOpen,  uses: 1},
+			{name: "screwdriver", orientation: 4, position:[30, 30], size: [50, 50], flag: true, uses: 1},
 		],
 		object_use: [
 			{name: "gibberish", orientation: 0, position: [30, 30], size: [10, 10]}, //use flashlight on safe
@@ -475,6 +368,9 @@ let app = new Vue({
 			else if (this.orientation == 3){
 				document.getElementById("game").style.backgroundImage = "url(DeskDrawerOpen.png)";
 				return {borderLeftColor: "FF0000"};
+			}
+			else if (this.orientation == 4){
+				document.getElementById("game").style.backgroundImage = "url(DeskInitial.png)"
 			}
 		},
 		iconSVG: function(){
