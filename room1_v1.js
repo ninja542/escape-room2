@@ -205,7 +205,7 @@ let app = new Vue({
 			{name: "flashlight", orientation: 0, position: [50, 50], size: [10, 10], flag: safe1Correct, uses: 4},
 			{name: "key", orientation: 0, position: [40, 40], size: [20, 20], flag: safe2Correct, uses: 1},
 			{name: "code2", orientation: 1, position: [40, 40], size: [10, 10], flag: mirrorBroken, uses: 1},
-			{name: "screwdriver", orientation: 3, position:[10, 10], size: [50, 50], flag: true, uses: 1},
+			{name: "screwdriver", orientation: 3, position:[30, 30], size: [50, 50], flag: true, uses: 1},
 			{name: "lighter", orientation: 3, position: [40, 40], size: [50, 50], flag: drawerOpen, uses: 1},
 			{name: "tape", orientation: 3, position: [20, 20], size: [10, 10], flag: drawerOpen,  uses: 1},
 		],
