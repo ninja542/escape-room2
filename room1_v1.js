@@ -101,6 +101,9 @@ var store = new Vuex.Store({
 		},
 		setActive(state, item){
 			state.isActive = item;
+		},
+		flagTrue(state, flag){
+			state.flags[flag] = true;
 		}
 	},
 	getters: {
